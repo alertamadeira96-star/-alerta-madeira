@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "911236239690",
+    "project_id": "alerta-7e359",
+    "storage_bucket": "alerta-7e359.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911236239690:android:7cf2149cd98f11d524f1b3",
+        "android_client_info": {
+          "package_name": "app.rork.alerta_madeira"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBMGmpKIghzVVkP4iIBVbkAX-b3hT-mMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

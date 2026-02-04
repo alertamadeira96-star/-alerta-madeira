@@ -1,0 +1,86 @@
+═══════════════════════════════════════════════════════════════
+  SIMPLE UPLOAD STEPS - FOLLOW THESE EXACTLY
+═══════════════════════════════════════════════════════════════
+
+STEP 1: OPEN FILEZILLA
+───────────────────────────────────────────────────────────────
+✓ Open FileZilla application
+
+STEP 2: CONNECT TO SERVER
+───────────────────────────────────────────────────────────────
+✓ At the top, enter:
+  Host:     193.203.189.7
+  Username: u773378680.alerta
+  Password: ^T1phanbfEatcJTL
+  Port:     21
+✓ Click "Quickconnect"
+✓ Wait for "Directory listing successful"
+
+STEP 3: GO TO ROOT DIRECTORY
+───────────────────────────────────────────────────────────────
+✓ On RIGHT side, you should see root "/"
+✓ If you're in a subfolder, click UP arrow (↑) until you see "/"
+
+STEP 4: CREATE public_html FOLDER
+───────────────────────────────────────────────────────────────
+✓ On RIGHT side, right-click in empty space
+✓ Click "Create directory"
+✓ Type: public_html
+✓ Press Enter
+✓ Double-click "public_html" to open it
+
+STEP 5: UPLOAD backend-php FOLDER
+───────────────────────────────────────────────────────────────
+✓ On LEFT side, navigate to:
+  C:\Users\Levi\Desktop\alerta-madeira-main
+✓ Find "backend-php" folder
+✓ Right-click "backend-php" → Click "Upload"
+✓ Wait for upload to finish (watch bottom status bar)
+
+STEP 6: RENAME backend-php TO api
+───────────────────────────────────────────────────────────────
+✓ On RIGHT side, find "backend-php" folder
+✓ Right-click "backend-php" → Click "Rename"
+✓ Delete "backend-php", type "api"
+✓ Press Enter
+
+STEP 7: UPLOAD admin-panel FOLDER
+───────────────────────────────────────────────────────────────
+✓ On LEFT side, find "admin-panel" folder
+✓ Right-click "admin-panel" → Click "Upload"
+✓ Wait for upload to finish
+
+STEP 8: VERIFY STRUCTURE
+───────────────────────────────────────────────────────────────
+✓ On RIGHT side, in public_html, you should see:
+  - api/ (folder)
+  - admin-panel/ (folder)
+✓ If you see "backend-php", rename it to "api"
+
+STEP 9: TEST IN BROWSER
+───────────────────────────────────────────────────────────────
+✓ Open browser
+✓ Go to: https://www.alertmadeira.com/api/health
+✓ Should see: {"success":true,"data":{"status":"ok"...}}
+✓ Go to: https://www.alertmadeira.com/admin-panel/
+✓ Should see login page
+
+═══════════════════════════════════════════════════════════════
+  IF "SITE CAN'T BE REACHED" - CHECK THESE:
+═══════════════════════════════════════════════════════════════
+
+❌ Files not in public_html?
+   → Make sure you're IN public_html folder when uploading
+
+❌ Folder named "backend-php" instead of "api"?
+   → Rename it to "api"
+
+❌ Files uploaded to wrong location?
+   → Delete and re-upload to public_html
+
+❌ Domain wrong?
+   → Try: http://www.alertmadeira.com (without https)
+   → Or check with buyer what the correct domain is
+
+═══════════════════════════════════════════════════════════════
+

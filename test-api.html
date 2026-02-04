@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API - Alerta Madeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #c41e3a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #9a1830;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid #c41e3a;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            border-left-color: #2a9d8f;
+            background: #e8f5e9;
+        }
+        .error {
+            border-left-color: #dc143c;
+            background: #ffebee;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #c41e3a;
+        }
+        h2 {
+            color: #2d1f1f;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Alerta Madeira API Tester</h1>
+    <p>Use this page to test your API after uploading to Hostinger.</p>
+
+    <div class="test-section">
+        <h2>1. API Base URL</h2>
+        <input type="text" id="apiUrl" value="https://www.alertmadeira.com/api" placeholder="Enter your API URL">
+        <p><small>Change this to your actual API URL if different</small></p>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Test API Health Check</h2>
+        <button onclick="testHealth()">Test Health Endpoint</button>
+        <div id="healthResult" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Test Database Connection</h2>
+        <p>This will try to get users (requires database to be set up)</p>
+        <button onclick="testDatabase()">Test Database</button>
+        <div id="dbResult" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Test Admin Panel</h2>
+        <p>Open this URL in a new tab:</p>
+        <a href="https://www.alertmadeira.com/admin-panel/" target="_blank" style="color: #c41e3a; font-weight: bold;">
+            https://www.alertmadeira.com/admin-panel/
+        </a>
+        <p><small>Login: admin@alertamadeira.pt / admin123</small></p>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Test User Registration</h2>
+        <input type="email" id="testEmail" placeholder="test@example.com" value="test@example.com">
+        <input type="text" id="testName" placeholder="Test User" value="Test User">
+        <input type="password" id="testPassword" placeholder="password123" value="password123">
+        <button onclick="testRegister()">Test Registration</button>
+        <div id="registerResult" class="result" style="display:none;"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Test Login</h2>
+        <input type="email" id="loginEmail" placeholder="admin@alertamadeira.pt" value="admin@alertamadeira.pt">
+        <input type="password" id="loginPassword" placeholder="admin123" value="admin123">
+        <button onclick="testLogin()">Test Login</button>
+        <div id="loginResult" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        const API_URL = document.getElementById('apiUrl').value;
+
+        function getApiUrl() {
+            return document.getElementById('apiUrl').value;
+        }
+
+        function showResult(elementId, data, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = 'result ' + (isSuccess ? 'success' : 'error');
+            element.textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testHealth() {
+            try {
+                const response = await fetch(getApiUrl() + '/health');
+                const data = await response.json();
+                showResult('healthResult', {
+                    status: response.status,
+                    data: data
+                }, response.ok);
+            } catch (error) {
+                showResult('healthResult', {
+                    error: 'Failed to connect',
+                    message: error.message
+                }, false);
+            }
+        }
+
+        async function testDatabase() {
+            try {
+                // This will fail without auth token, but we can see the error
+                const response = await fetch(getApiUrl() + '/users');
+                const data = await response.json();
+                showResult('dbResult', {
+                    status: response.status,
+                    data: data,
+                    note: response.status === 401 ? 'Expected - needs authentication' : 'Success!'
+                }, response.ok || response.status === 401);
+            } catch (error) {
+                showResult('dbResult', {
+                    error: 'Failed to connect',
+                    message: error.message
+                }, false);
+            }
+        }
+
+        async function testRegister() {
+            try {
+                const email = document.getElementById('testEmail').value;
+                const name = document.getElementById('testName').value;
+                const password = document.getElementById('testPassword').value;
+
+                const response = await fetch(getApiUrl() + '/auth?action=register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, name, password })
+                });
+
+                const data = await response.json();
+                showResult('registerResult', {
+                    status: response.status,
+                    data: data
+                }, response.ok);
+            } catch (error) {
+                showResult('registerResult', {
+                    error: 'Failed to register',
+                    message: error.message
+                }, false);
+            }
+        }
+
+        async function testLogin() {
+            try {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                const response = await fetch(getApiUrl() + '/auth?action=login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                showResult('loginResult', {
+                    status: response.status,
+                    data: data,
+                    note: data.success ? 'Token received! API is working.' : 'Check credentials'
+                }, response.ok);
+            } catch (error) {
+                showResult('loginResult', {
+                    error: 'Failed to login',
+                    message: error.message
+                }, false);
+            }
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,3 @@
+# Use npm on EAS Build (cloud has no Bun)
+bun.lock
+bun.lockb
