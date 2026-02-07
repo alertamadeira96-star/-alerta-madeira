@@ -21,8 +21,9 @@ Shows the app at `http://localhost:8081` (or similar).
    | Command | What you get |
    |---------|--------------|
    | `bun run start` | QR code + **tunnel URL** (works when phone not on same Wi‑Fi) |
+   | `bun run expo:tunnel:online` | **Tunnel without offline** – use if Expo Go shows "Failed to download remote update" |
    | `bun run phone` | QR code + **localhost** (phone must be on same Wi‑Fi as PC) |
-   | `bun run expo:tunnel` | QR code + tunnel (plain Expo, no Rork) |
+   | `bun run expo:tunnel` | QR code + tunnel (with EXPO_OFFLINE) |
    | `bun run expo` | QR code + localhost (plain Expo) |
 
 3. **Scan the QR code** with Expo Go.
@@ -68,5 +69,6 @@ Then scan the QR code with Expo Go again.
 |-------|-----|
 | "bun: command not found" | Install Bun (see above) |
 | "could not be loaded with Node.js" | Run clean install above; Metro will fall back to plain config if needed |
-| App not loading in Expo Go | Use `bun run start` (tunnel) if phone is on different Wi‑Fi |
-| Something went wrong / blank screen | Run `bun run expo:clear` to reset Metro cache |
+| **"Something went wrong" / "Failed to download remote update"** | See **[EXPOGO_TROUBLESHOOTING.md](./EXPOGO_TROUBLESHOOTING.md)**. Try: `bun run expo:tunnel:online`, Windows firewall (allow TCP 8081), update/clear Expo Go, same network/tunnel. |
+| App not loading in Expo Go | Use `bun run expo:tunnel:online` or `bun run start` (tunnel) if phone is on different Wi‑Fi |
+| Something went wrong / blank screen | Run `bun run expo:clear` or `bun run expo:tunnel:online:clear` to reset Metro cache |

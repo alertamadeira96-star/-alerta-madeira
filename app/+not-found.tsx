@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import { AlertTriangle } from "lucide-react-native";
+import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/colors";
 
 export default function NotFoundScreen() {
@@ -9,7 +9,7 @@ export default function NotFoundScreen() {
       <Stack.Screen options={{ title: "Página não encontrada" }} />
       <View style={styles.container}>
         <View style={styles.iconContainer}>
-          <AlertTriangle size={48} color={Colors.textLight} />
+          <Ionicons name="warning" size={48} color={Colors.textLight} />
         </View>
         <Text style={styles.title}>Página não encontrada</Text>
         <Text style={styles.subtitle}>Esta página não existe ou foi removida.</Text>

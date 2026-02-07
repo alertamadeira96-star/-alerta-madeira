@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, FlatList, StyleSheet, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Plus, ShieldAlert } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { usePosts } from '@/contexts/PostsContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -72,14 +72,14 @@ export default function OpStopScreen() {
         ListHeaderComponent={posts.length > 0 ? <AdBanner variant="inline" /> : null}
         ListEmptyComponent={
           <EmptyState 
-            icon={ShieldAlert}
+            iconName="shield-checkmark"
             title="Sem operações stop"
             description="Ainda não há operações stop reportadas. Ajude a comunidade a estar informada!"
           />
         }
       />
       <Pressable style={styles.fab} onPress={handleCreatePost}>
-        <Plus size={28} color={Colors.textInverse} />
+        <Ionicons name="add" size={28} color={Colors.textInverse} />
       </Pressable>
     </View>
   );

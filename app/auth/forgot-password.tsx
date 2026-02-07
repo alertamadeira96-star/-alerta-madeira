@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Mail, ArrowLeft, AlertTriangle } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '@/constants/colors';
 
@@ -36,7 +36,7 @@ export default function ForgotPasswordScreen() {
     >
       <SafeAreaView style={styles.container}>
         <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <ArrowLeft size={24} color={Colors.textInverse} />
+          <Ionicons name="arrow-back" size={24} color={Colors.textInverse} />
         </Pressable>
 
         <KeyboardAvoidingView 
@@ -46,7 +46,7 @@ export default function ForgotPasswordScreen() {
           <View style={styles.content}>
             <View style={styles.header}>
               <View style={styles.logoContainer}>
-                <AlertTriangle size={40} color={Colors.secondary} />
+                <Ionicons name="warning" size={40} color={Colors.secondary} />
               </View>
               <Text style={styles.title}>Recuperar Conta</Text>
               <Text style={styles.subtitle}>
@@ -56,7 +56,7 @@ export default function ForgotPasswordScreen() {
 
             <View style={styles.formContainer}>
               <View style={styles.inputContainer}>
-                <Mail size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="mail" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Email"

@@ -4,10 +4,14 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "node scripts/patch-expo-metro.js",
-    "start": "cross-env EXPO_OFFLINE=1 npx expo start --tunnel",
-    "phone": "cross-env EXPO_OFFLINE=1 npx expo start",
-    "expo": "cross-env EXPO_OFFLINE=1 npx expo start",
-    "expo:tunnel": "cross-env EXPO_OFFLINE=1 npx expo start --tunnel",
+    "start": "npx expo start",
+    "phone": "npx expo start",
+    "expo": "npx expo start",
+    "expo:clear": "npx expo start --clear",
+    "expo:tunnel": "npx expo start --tunnel",
+    "expo:tunnel:clear": "npx expo start --tunnel --clear",
+    "expo:tunnel:online": "npx expo start --tunnel",
+    "expo:tunnel:online:clear": "npx expo start --tunnel --clear",
     "start-web": "npx expo start --web --tunnel",
     "web": "npx expo start --web",
     "start-web-dev": "npx expo start --web --tunnel",
@@ -40,7 +44,6 @@
     "expo-symbols": "~1.0.8",
     "expo-system-ui": "~6.0.9",
     "expo-web-browser": "~15.0.10",
-    "lucide-react-native": "^0.475.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
@@ -49,7 +52,7 @@
     "react-native-screens": "~4.16.0",
     "react-native-svg": "15.12.1",
     "react-native-web": "^0.21.0",
-    "zustand": "^5.0.2"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

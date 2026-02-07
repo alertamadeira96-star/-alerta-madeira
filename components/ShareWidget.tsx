@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable, Share, Platform, Linking, Alert } from 'react-native';
-import { Share2, Facebook, MessageCircle } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import * as Haptics from 'expo-haptics';
 
@@ -65,13 +65,13 @@ export default function ShareWidget({ title, description, url }: ShareWidgetProp
       <Text style={styles.label}>Partilhar</Text>
       <View style={styles.buttons}>
         <Pressable style={styles.shareButton} onPress={handleNativeShare}>
-          <Share2 size={18} color={Colors.primary} />
+          <Ionicons name="share-social" size={18} color={Colors.primary} />
         </Pressable>
         <Pressable style={[styles.shareButton, styles.whatsappButton]} onPress={handleWhatsAppShare}>
-          <MessageCircle size={18} color="#25D366" />
+          <Ionicons name="logo-whatsapp" size={18} color="#25D366" />
         </Pressable>
         <Pressable style={[styles.shareButton, styles.facebookButton]} onPress={handleFacebookShare}>
-          <Facebook size={18} color="#1877F2" />
+          <Ionicons name="logo-facebook" size={18} color="#1877F2" />
         </Pressable>
       </View>
     </View>

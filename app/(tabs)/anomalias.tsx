@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { View, FlatList, StyleSheet, Pressable, Text, TextInput, ScrollView, Modal, Alert, Platform, ActivityIndicator, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Plus, Construction, MapPin, Navigation, Edit3, Camera, ImageIcon, X, ChevronDown, Check } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
@@ -240,13 +240,13 @@ export default function AnomaliasScreen() {
   const renderFormCard = () => (
     <View style={styles.formCard}>
       <View style={styles.formHeader}>
-        <Construction size={24} color={Colors.primary} />
+        <Ionicons name="construct" size={24} color={Colors.primary} />
         <Text style={styles.formTitle}>Problemas na sua localidade? Divulgue aqui!</Text>
       </View>
 
       {!showForm ? (
         <Pressable style={styles.expandButton} onPress={() => setShowForm(true)}>
-          <Plus size={20} color={Colors.textInverse} />
+          <Ionicons name="add" size={20} color={Colors.textInverse} />
           <Text style={styles.expandButtonText}>Reportar Anomalia</Text>
         </Pressable>
       ) : (
@@ -269,7 +269,7 @@ export default function AnomaliasScreen() {
                 {isLoadingLocation ? (
                   <ActivityIndicator size="small" color={Colors.textInverse} />
                 ) : (
-                  <MapPin size={20} color={Colors.textInverse} />
+                  <Ionicons name="location" size={20} color={Colors.textInverse} />
                 )}
               </Pressable>
             </View>
@@ -303,7 +303,7 @@ export default function AnomaliasScreen() {
               <Text style={categoria ? styles.selectText : styles.selectPlaceholder}>
                 {categoria || 'Escolha'}
               </Text>
-              <ChevronDown size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-down" size={20} color={Colors.textSecondary} />
             </Pressable>
           </View>
 
@@ -317,7 +317,7 @@ export default function AnomaliasScreen() {
               <Text style={assunto ? styles.selectText : styles.selectPlaceholder}>
                 {assunto || 'Indique a Categoria'}
               </Text>
-              <ChevronDown size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-down" size={20} color={Colors.textSecondary} />
             </Pressable>
           </View>
 
@@ -327,19 +327,19 @@ export default function AnomaliasScreen() {
               <View style={styles.imagePreview}>
                 <Image source={{ uri: imageUri }} style={styles.previewImage} contentFit="cover" />
                 <Pressable style={styles.removeImage} onPress={() => setImageUri(null)}>
-                  <X size={16} color={Colors.textInverse} />
+                  <Ionicons name="close" size={16} color={Colors.textInverse} />
                 </Pressable>
               </View>
             ) : (
               <View style={styles.photoRow}>
                 <Pressable style={styles.photoBtn} onPress={() => pickImage(true)}>
-                  <Camera size={20} color={Colors.primary} />
+                  <Ionicons name="camera" size={20} color={Colors.primary} />
                 </Pressable>
                 <View style={styles.photoInputWrapper}>
                   <Text style={styles.photoPlaceholder}>Nenhuma foto selecionada...</Text>
                 </View>
                 <Pressable style={styles.photoAddBtn} onPress={() => pickImage(false)}>
-                  <Plus size={18} color={Colors.textInverse} />
+                  <Ionicons name="add" size={18} color={Colors.textInverse} />
                 </Pressable>
               </View>
             )}
@@ -367,7 +367,7 @@ export default function AnomaliasScreen() {
             onPress={handlePublish}
             disabled={createPostPending}
           >
-            <Check size={20} color={Colors.textInverse} />
+            <Ionicons name="checkmark" size={20} color={Colors.textInverse} />
             <Text style={styles.publishBtnText}>
               {createPostPending ? 'A publicar...' : 'Publicar Anomalia'}
             </Text>
@@ -391,7 +391,7 @@ export default function AnomaliasScreen() {
               <View style={styles.pickerHeader}>
                 <Text style={styles.pickerTitle}>Selecionar Categoria</Text>
                 <Pressable onPress={() => setShowCategoryPicker(false)}>
-                  <X size={24} color={Colors.text} />
+                  <Ionicons name="close" size={24} color={Colors.text} />
                 </Pressable>
               </View>
               <ScrollView>
@@ -408,7 +408,7 @@ export default function AnomaliasScreen() {
                     <Text style={[styles.pickerItemText, categoria === cat && styles.pickerItemTextSelected]}>
                       {cat}
                     </Text>
-                    {categoria === cat && <Check size={20} color={Colors.primary} />}
+                    {categoria === cat && <Ionicons name="checkmark" size={20} color={Colors.primary} />}
                   </Pressable>
                 ))}
               </ScrollView>
@@ -429,7 +429,7 @@ export default function AnomaliasScreen() {
               <View style={styles.pickerHeader}>
                 <Text style={styles.pickerTitle}>Selecionar Assunto</Text>
                 <Pressable onPress={() => setShowAssuntoPicker(false)}>
-                  <X size={24} color={Colors.text} />
+                  <Ionicons name="close" size={24} color={Colors.text} />
                 </Pressable>
               </View>
               <ScrollView>
@@ -445,7 +445,7 @@ export default function AnomaliasScreen() {
                     <Text style={[styles.pickerItemText, assunto === ass && styles.pickerItemTextSelected]}>
                       {ass}
                     </Text>
-                    {assunto === ass && <Check size={20} color={Colors.primary} />}
+                    {assunto === ass && <Ionicons name="checkmark" size={20} color={Colors.primary} />}
                   </Pressable>
                 ))}
               </ScrollView>
@@ -487,7 +487,7 @@ export default function AnomaliasScreen() {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <EmptyState 
-            icon={Construction}
+            iconName="construct"
             title="Sem anomalias"
             description="Ainda não há anomalias reportadas. Reporte problemas na via pública!"
           />

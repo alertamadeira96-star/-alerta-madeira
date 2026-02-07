@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated } from 'react-native';
 import { Image } from 'expo-image';
 import { Video, ResizeMode } from 'expo-av';
-import { X, ExternalLink, Volume2, VolumeX } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 
 interface Ad {
@@ -140,7 +140,7 @@ export default function AdBanner({ variant = 'banner' }: AdBannerProps) {
           <Text style={styles.inlineCtaText}>{currentAd.ctaText}</Text>
         </Pressable>
         <Pressable style={styles.inlineDismiss} onPress={handleDismiss}>
-          <X size={16} color={Colors.textLight} />
+          <Ionicons name="close" size={16} color={Colors.textLight} />
         </Pressable>
       </Animated.View>
     );
@@ -162,9 +162,9 @@ export default function AdBanner({ variant = 'banner' }: AdBannerProps) {
             />
             <Pressable style={styles.muteButton} onPress={toggleMute}>
               {isMuted ? (
-                <VolumeX size={18} color="#fff" />
+                <Ionicons name="volume-mute" size={18} color="#fff" />
               ) : (
-                <Volume2 size={18} color="#fff" />
+                <Ionicons name="volume-high" size={18} color="#fff" />
               )}
             </Pressable>
           </>
@@ -181,7 +181,7 @@ export default function AdBanner({ variant = 'banner' }: AdBannerProps) {
             <Text style={styles.sponsorText}>{currentAd.sponsor}</Text>
           </View>
           <Pressable style={styles.dismissButton} onPress={handleDismiss}>
-            <X size={18} color="#fff" />
+            <Ionicons name="close" size={18} color="#fff" />
           </Pressable>
         </View>
         
@@ -192,7 +192,7 @@ export default function AdBanner({ variant = 'banner' }: AdBannerProps) {
           </View>
           <Pressable style={styles.ctaButton} onPress={handlePress}>
             <Text style={styles.ctaText}>{currentAd.ctaText}</Text>
-            <ExternalLink size={14} color="#fff" />
+            <Ionicons name="open-outline" size={14} color="#fff" />
           </Pressable>
         </View>
       </Pressable>

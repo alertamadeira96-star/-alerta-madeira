@@ -1,21 +1,43 @@
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { supabaseService } from './supabaseService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PUSH_TOKEN_KEY = 'push_token_registered';
 
-// Configure notification handler
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-});
+// Detect Expo Go so we can safely no-op push registration there.
+const isExpoGo = Constants.appOwnership === 'expo';
+
+// Lazily configure the notification handler so nothing runs before first render.
+let handlerInitialized = false;
+function ensureNotificationHandler() {
+  if (handlerInitialized || isExpoGo) return;
+  try {
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
+    handlerInitialized = true;
+  } catch (_) {
+    // Ignore if notification module not ready
+  }
+}
 
 export async function registerForPushNotifications() {
+  // Temporarily disable remote push registration when running inside Expo Go.
+  // This avoids Expo Go-specific limitations and focuses on keeping the app stable.
+  if (isExpoGo) {
+    console.log('[push] Skipping push registration in Expo Go client.');
+    return null;
+  }
+
+  ensureNotificationHandler();
+
   let token;
 
   if (Platform.OS === 'android') {

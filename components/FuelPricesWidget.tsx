@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, ActivityIndicator } from 'react-native';
-import { Fuel, TrendingUp, TrendingDown, Minus } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 
 interface FuelPrice {
@@ -59,11 +59,11 @@ export default function FuelPricesWidget({ compact = false }: FuelPricesWidgetPr
   const getTrendIcon = (trend: string) => {
     switch (trend) {
       case 'up':
-        return <TrendingUp size={14} color="#EF4444" />;
+        return <Ionicons name="trending-up" size={14} color="#EF4444" />;
       case 'down':
-        return <TrendingDown size={14} color="#22C55E" />;
+        return <Ionicons name="trending-down" size={14} color="#22C55E" />;
       default:
-        return <Minus size={14} color={Colors.textSecondary} />;
+        return <Ionicons name="remove" size={14} color={Colors.textSecondary} />;
     }
   };
 
@@ -97,7 +97,7 @@ export default function FuelPricesWidget({ compact = false }: FuelPricesWidgetPr
       <View style={[styles.container, styles.containerCompact]}>
         <View style={styles.compactHeader}>
           <View style={styles.compactIconContainer}>
-            <Fuel size={14} color={Colors.textInverse} />
+            <Ionicons name="flash" size={14} color={Colors.textInverse} />
           </View>
           <Text style={styles.compactTitle}>Combustíveis</Text>
         </View>
@@ -128,7 +128,7 @@ export default function FuelPricesWidget({ compact = false }: FuelPricesWidgetPr
       <View style={styles.header}>
         <View style={styles.titleRow}>
           <View style={styles.iconContainer}>
-            <Fuel size={18} color={Colors.textInverse} />
+            <Ionicons name="flash" size={18} color={Colors.textInverse} />
           </View>
           <View>
             <Text style={styles.cardTitle}>Combustíveis na Madeira</Text>

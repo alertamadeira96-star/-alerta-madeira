@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, ActivityIndicator, Modal, ScrollView, TouchableWithoutFeedback } from 'react-native';
-import { Cloud, Sun, CloudRain, CloudSnow, Wind, Thermometer, Droplets, MapPin, ChevronDown, X, Check } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 
 interface WeatherData {
@@ -72,17 +72,17 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
   const getWeatherIcon = (condition: WeatherData['condition']) => {
     switch (condition) {
       case 'sunny':
-        return <Sun size={iconSize} color="#F59E0B" />;
+        return <Ionicons name="sunny" size={iconSize} color="#F59E0B" />;
       case 'cloudy':
-        return <Cloud size={iconSize} color="#9CA3AF" />;
+        return <Ionicons name="cloud" size={iconSize} color="#9CA3AF" />;
       case 'rainy':
-        return <CloudRain size={iconSize} color="#3B82F6" />;
+        return <Ionicons name="rainy" size={iconSize} color="#3B82F6" />;
       case 'snowy':
-        return <CloudSnow size={iconSize} color="#93C5FD" />;
+        return <Ionicons name="snow" size={iconSize} color="#93C5FD" />;
       case 'windy':
-        return <Wind size={iconSize} color="#6B7280" />;
+        return <Ionicons name="flag" size={iconSize} color="#6B7280" />;
       default:
-        return <Sun size={iconSize} color="#F59E0B" />;
+        return <Ionicons name="sunny" size={iconSize} color="#F59E0B" />;
     }
   };
 
@@ -125,16 +125,16 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
         {compact ? (
           <>
             <View style={styles.compactHeader}>
-              <Sun size={14} color={Colors.primary} />
+              <Ionicons name="sunny" size={14} color={Colors.primary} />
               <Text style={styles.compactTitle}>Meteorologia</Text>
             </View>
             <Pressable 
               style={styles.compactLocationSelector}
               onPress={() => setShowMunicipioPicker(true)}
             >
-              <MapPin size={12} color={Colors.primary} />
+              <Ionicons name="location" size={12} color={Colors.primary} />
               <Text style={styles.compactLocationText} numberOfLines={1}>{selectedMunicipio.name}</Text>
-              <ChevronDown size={12} color={Colors.primary} />
+              <Ionicons name="chevron-down" size={12} color={Colors.primary} />
             </Pressable>
             <View style={styles.compactMainContent}>
               <View style={styles.compactIconContainer}>
@@ -148,7 +148,7 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
           <>
             <View style={styles.header}>
               <View style={styles.titleRow}>
-                <Sun size={18} color={Colors.primary} />
+                <Ionicons name="sunny" size={18} color={Colors.primary} />
                 <Text style={styles.cardTitle}>Meteorologia</Text>
               </View>
               <Pressable 
@@ -158,9 +158,9 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
                   setShowMunicipioPicker(true);
                 }}
               >
-                <MapPin size={14} color={Colors.primary} />
+                <Ionicons name="location" size={14} color={Colors.primary} />
                 <Text style={styles.locationText}>{selectedMunicipio.name}</Text>
-                <ChevronDown size={14} color={Colors.primary} />
+                <Ionicons name="chevron-down" size={14} color={Colors.primary} />
               </Pressable>
             </View>
 
@@ -178,17 +178,17 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
               <View style={styles.detailsContainer}>
                 <View style={styles.detailsGrid}>
                   <View style={styles.detailItem}>
-                    <Thermometer size={18} color={Colors.textSecondary} />
+                    <Ionicons name="thermometer" size={18} color={Colors.textSecondary} />
                     <Text style={styles.detailLabel}>Sensação</Text>
                     <Text style={styles.detailValue}>{weather.feelsLike}°C</Text>
                   </View>
                   <View style={styles.detailItem}>
-                    <Droplets size={18} color="#3B82F6" />
+                    <Ionicons name="water" size={18} color="#3B82F6" />
                     <Text style={styles.detailLabel}>Humidade</Text>
                     <Text style={styles.detailValue}>{weather.humidity}%</Text>
                   </View>
                   <View style={styles.detailItem}>
-                    <Wind size={18} color="#6B7280" />
+                    <Ionicons name="flag" size={18} color="#6B7280" />
                     <Text style={styles.detailLabel}>Vento</Text>
                     <Text style={styles.detailValue}>{weather.windSpeed} km/h</Text>
                   </View>
@@ -215,7 +215,7 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
               <View style={styles.pickerHeader}>
                 <Text style={styles.pickerTitle}>Selecionar Município</Text>
                 <Pressable onPress={() => setShowMunicipioPicker(false)}>
-                  <X size={24} color={Colors.text} />
+                  <Ionicons name="close" size={24} color={Colors.text} />
                 </Pressable>
               </View>
               <ScrollView>
@@ -232,7 +232,7 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
                     }}
                   >
                     <View style={styles.pickerItemContent}>
-                      <MapPin size={18} color={selectedMunicipio.id === municipio.id ? Colors.primary : Colors.textSecondary} />
+                      <Ionicons name="location" size={18} color={selectedMunicipio.id === municipio.id ? Colors.primary : Colors.textSecondary} />
                       <Text style={[
                         styles.pickerItemText,
                         selectedMunicipio.id === municipio.id && styles.pickerItemTextSelected
@@ -241,7 +241,7 @@ export default function WeatherWidget({ compact = false }: WeatherWidgetProps) {
                       </Text>
                     </View>
                     {selectedMunicipio.id === municipio.id && (
-                      <Check size={20} color={Colors.primary} />
+                      <Ionicons name="checkmark" size={20} color={Colors.primary} />
                     )}
                   </Pressable>
                 ))}

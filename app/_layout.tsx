@@ -49,7 +49,11 @@ class AbortErrorBoundary extends Component<
   }
 }
 
-SplashScreen.preventAutoHideAsync();
+try {
+  SplashScreen.preventAutoHideAsync();
+} catch (_) {
+  // Ignore on Expo Go or when native module not ready
+}
 
 const queryClient = new QueryClient();
 
@@ -61,7 +65,7 @@ function RootLayoutNav() {
   useEffect(() => {
     // Only register notification listeners on native (on web, removeSubscription can throw)
     if (user && Platform.OS !== 'web') {
-      registerForPushNotifications();
+      registerForPushNotifications().catch(() => {});
 
       notificationListener.current = addNotificationReceivedListener(notification => {
         console.log('Notification received:', notification);
@@ -122,7 +126,11 @@ function RootLayoutNav() {
 
 export default function RootLayout() {
   useEffect(() => {
-    SplashScreen.hideAsync();
+    // Delay hide so native shell is ready (prevents crash on built app)
+    const t = setTimeout(() => {
+      SplashScreen.hideAsync().catch(() => {});
+    }, 100);
+    return () => clearTimeout(t);
   }, []);
 
   return (

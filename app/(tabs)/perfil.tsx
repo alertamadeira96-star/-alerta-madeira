@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable, FlatList, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { LogOut, FileText, Heart, MessageCircle, Calendar, Shield } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
 import { usePosts } from '@/contexts/PostsContext';
@@ -66,12 +66,12 @@ export default function PerfilScreen() {
               <Text style={styles.userName}>{user.name}</Text>
               <Text style={styles.userEmail}>{user.email}</Text>
               <View style={styles.joinedRow}>
-                <Calendar size={14} color={Colors.textLight} />
+                <Ionicons name="calendar" size={14} color={Colors.textLight} />
                 <Text style={styles.joinedText}>Membro desde {formatDate(user.createdAt)}</Text>
               </View>
               {user.role === 'admin' && (
                 <View style={styles.adminBadge}>
-                  <Shield size={14} color={Colors.textInverse} />
+                  <Ionicons name="shield" size={14} color={Colors.textInverse} />
                   <Text style={styles.adminBadgeText}>Administrador</Text>
                 </View>
               )}
@@ -79,19 +79,19 @@ export default function PerfilScreen() {
 
             <View style={styles.statsContainer}>
               <View style={styles.statItem}>
-                <FileText size={24} color={Colors.primary} />
+                <Ionicons name="document-text" size={24} color={Colors.primary} />
                 <Text style={styles.statNumber}>{stats.postsCount}</Text>
                 <Text style={styles.statLabel}>Publicações</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
-                <Heart size={24} color={Colors.reactionHeart} />
+                <Ionicons name="heart" size={24} color={Colors.reactionHeart} />
                 <Text style={styles.statNumber}>{stats.totalReactions}</Text>
                 <Text style={styles.statLabel}>Reações</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
-                <MessageCircle size={24} color={Colors.primary} />
+                <Ionicons name="chatbubble" size={24} color={Colors.primary} />
                 <Text style={styles.statNumber}>{stats.totalComments}</Text>
                 <Text style={styles.statLabel}>Comentários</Text>
               </View>
@@ -102,7 +102,7 @@ export default function PerfilScreen() {
                 style={styles.adminButton} 
                 onPress={() => router.push('/admin' as never)}
               >
-                <Shield size={20} color={Colors.textInverse} />
+                <Ionicons name="shield" size={20} color={Colors.textInverse} />
                 <Text style={styles.adminButtonText}>Painel de Administração</Text>
               </Pressable>
             )}
@@ -112,7 +112,7 @@ export default function PerfilScreen() {
               onPress={handleLogout}
               disabled={logoutPending}
             >
-              <LogOut size={20} color={Colors.accent} />
+              <Ionicons name="log-out" size={20} color={Colors.accent} />
               <Text style={styles.logoutText}>
                 {logoutPending ? 'A sair...' : 'Terminar Sessão'}
               </Text>
@@ -137,7 +137,7 @@ export default function PerfilScreen() {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <EmptyState 
-            icon={FileText}
+            iconName="document-text"
             title="Sem publicações"
             description="Ainda não fez nenhuma publicação. Comece a alertar a comunidade!"
           />

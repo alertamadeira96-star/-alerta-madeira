@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Pressable, Animated, Platform, Alert, Modal, Linking } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { ThumbsUp, Heart, AlertTriangle, MessageCircle, MapPin, Clock, MoreVertical, Edit2, Trash2, Video } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Post, CATEGORY_LABELS, Reactions } from '@/types';
 import Colors from '@/constants/colors';
 import ShareWidget from './ShareWidget';
@@ -124,7 +124,7 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
             <View>
               <Text style={styles.userName}>{post.userName}</Text>
               <View style={styles.metaRow}>
-                <Clock size={12} color={Colors.textLight} />
+                <Ionicons name="time" size={12} color={Colors.textLight} />
                 <Text style={styles.metaText}>{formatDate(post.createdAt)}</Text>
               </View>
             </View>
@@ -150,7 +150,7 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
 
         {post.videoUrl && (
           <Pressable style={styles.videoIndicator} onPress={handleVideoPress}>
-            <Video size={16} color={Colors.textInverse} />
+            <Ionicons name="videocam" size={16} color={Colors.textInverse} />
             <Text style={styles.videoText}>Ver Vídeo</Text>
           </Pressable>
         )}
@@ -160,7 +160,7 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
           <Text style={styles.description} numberOfLines={3}>{post.description}</Text>
           
           <View style={styles.locationRow}>
-            <MapPin size={14} color={Colors.textSecondary} />
+            <Ionicons name="location" size={14} color={Colors.textSecondary} />
             <Text style={styles.locationText} numberOfLines={1}>{post.location}</Text>
           </View>
         </View>
@@ -172,10 +172,10 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
             style={[styles.reactionButton, hasReactedThumbsUp && styles.reactionButtonActive]}
             onPress={() => handleReaction('thumbsUp')}
           >
-            <ThumbsUp 
+            <Ionicons 
+              name={hasReactedThumbsUp ? 'thumbs-up' : 'thumbs-up-outline'} 
               size={20} 
               color={hasReactedThumbsUp ? Colors.reactionThumbsUp : Colors.textSecondary}
-              fill={hasReactedThumbsUp ? Colors.reactionThumbsUp : 'transparent'}
             />
             <Text style={[styles.reactionCount, hasReactedThumbsUp && { color: Colors.reactionThumbsUp }]}>
               {post.reactions.thumbsUp.length}
@@ -186,10 +186,10 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
             style={[styles.reactionButton, hasReactedHeart && styles.reactionButtonActive]}
             onPress={() => handleReaction('heart')}
           >
-            <Heart 
+            <Ionicons 
+              name={hasReactedHeart ? 'heart' : 'heart-outline'} 
               size={20} 
               color={hasReactedHeart ? Colors.reactionHeart : Colors.textSecondary}
-              fill={hasReactedHeart ? Colors.reactionHeart : 'transparent'}
             />
             <Text style={[styles.reactionCount, hasReactedHeart && { color: Colors.reactionHeart }]}>
               {post.reactions.heart.length}
@@ -200,10 +200,10 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
             style={[styles.reactionButton, hasReactedAlert && styles.reactionButtonActive]}
             onPress={() => handleReaction('alert')}
           >
-            <AlertTriangle 
+            <Ionicons 
+              name="warning" 
               size={20} 
               color={hasReactedAlert ? Colors.reactionAlert : Colors.textSecondary}
-              fill={hasReactedAlert ? Colors.reactionAlert : 'transparent'}
             />
             <Text style={[styles.reactionCount, hasReactedAlert && { color: Colors.reactionAlert }]}>
               {post.reactions.alert.length}
@@ -212,7 +212,7 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
         </View>
 
         <Pressable style={styles.commentsButton} onPress={handlePress}>
-          <MessageCircle size={20} color={Colors.textSecondary} />
+          <Ionicons name="chatbubble" size={20} color={Colors.textSecondary} />
           <Text style={styles.commentsCount}>{post.commentsCount}</Text>
         </Pressable>
       </View>
@@ -230,11 +230,11 @@ export default function PostCard({ post, userId, onReaction, onDelete, onEdit, i
         <Pressable style={styles.modalOverlay} onPress={() => setShowMenu(false)}>
           <View style={styles.menuContainer}>
             <Pressable style={styles.menuItem} onPress={handleEdit}>
-              <Edit2 size={20} color={Colors.primary} />
+              <Ionicons name="create" size={20} color={Colors.primary} />
               <Text style={styles.menuItemText}>Editar</Text>
             </Pressable>
             <Pressable style={[styles.menuItem, styles.menuItemDanger]} onPress={handleDelete}>
-              <Trash2 size={20} color={Colors.accent} />
+              <Ionicons name="trash" size={20} color={Colors.accent} />
               <Text style={[styles.menuItemText, styles.menuItemTextDanger]}>Eliminar</Text>
             </Pressable>
           </View>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable, KeyboardAvoidingView, Platform, ScrollView, Switch } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Mail, Lock, Eye, EyeOff, User, ArrowLeft, AlertTriangle } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@/constants/colors';
@@ -58,7 +58,7 @@ export default function RegisterScreen() {
     >
       <SafeAreaView style={styles.container}>
         <Pressable style={styles.backButton} onPress={() => router.back()}>
-          <ArrowLeft size={24} color={Colors.textInverse} />
+          <Ionicons name="arrow-back" size={24} color={Colors.textInverse} />
         </Pressable>
 
         <KeyboardAvoidingView 
@@ -72,7 +72,7 @@ export default function RegisterScreen() {
           >
             <View style={styles.header}>
               <View style={styles.logoContainer}>
-                <AlertTriangle size={40} color={Colors.secondary} />
+                <Ionicons name="warning" size={40} color={Colors.secondary} />
               </View>
               <Text style={styles.title}>Criar Conta</Text>
               <Text style={styles.subtitle}>Junte-se à comunidade</Text>
@@ -86,7 +86,7 @@ export default function RegisterScreen() {
               ) : null}
 
               <View style={styles.inputContainer}>
-                <User size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="person" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Nome completo"
@@ -98,7 +98,7 @@ export default function RegisterScreen() {
               </View>
 
               <View style={styles.inputContainer}>
-                <Mail size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="mail" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Email"
@@ -112,7 +112,7 @@ export default function RegisterScreen() {
               </View>
 
               <View style={styles.inputContainer}>
-                <Lock size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="lock-closed" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Palavra-passe"
@@ -122,16 +122,16 @@ export default function RegisterScreen() {
                   secureTextEntry={!showPassword}
                 />
                 <Pressable onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-                  {showPassword ? (
-                    <EyeOff size={20} color={Colors.textSecondary} />
-                  ) : (
-                    <Eye size={20} color={Colors.textSecondary} />
-                  )}
+                  <Ionicons
+                    name={showPassword ? 'eye-off' : 'eye'}
+                    size={20}
+                    color={Colors.textSecondary}
+                  />
                 </Pressable>
               </View>
 
               <View style={styles.inputContainer}>
-                <Lock size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="lock-closed" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Confirmar palavra-passe"

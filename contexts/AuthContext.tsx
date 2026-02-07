@@ -11,9 +11,9 @@ export const [AuthProvider, useAuth] = createContextHook(() => {
   const [authReady, setAuthReady] = useState(false);
   const queryClient = useQueryClient();
 
-  // Delay first auth call so Supabase internal init doesn't race with our getUser
+  // Short delay so Supabase init doesn't race with getUser
   useEffect(() => {
-    const t = setTimeout(() => setAuthReady(true), 800);
+    const t = setTimeout(() => setAuthReady(true), 200);
     return () => clearTimeout(t);
   }, []);
 

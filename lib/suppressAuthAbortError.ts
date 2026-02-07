@@ -1,8 +1,12 @@
 /**
  * Run as early as possible to catch "signal is aborted" from @supabase/auth-js
  * so it doesn't show as Uncaught Error in the dev overlay.
+ *
+ * NOTE: Only activate in real browsers. In React Native, `window` exists but
+ * does not implement `addEventListener`, so we must no-op to avoid
+ * `window.addEventListener is not a function` on native.
  */
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && typeof (window as any).addEventListener === 'function') {
   const isAbort = (msg: string) =>
     msg && (msg.toLowerCase().includes('abort') || msg.includes('signal'));
 

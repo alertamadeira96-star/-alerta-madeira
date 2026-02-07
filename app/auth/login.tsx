@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable, KeyboardAvoidingView, Platform, ScrollView, Switch } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Mail, Lock, Eye, EyeOff, AlertTriangle } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '@/constants/colors';
@@ -76,7 +76,7 @@ export default function LoginScreen() {
           >
             <View style={styles.header}>
               <View style={styles.logoContainer}>
-                <AlertTriangle size={48} color={Colors.secondary} />
+                <Ionicons name="warning" size={48} color={Colors.secondary} />
               </View>
               <Text style={styles.title}>Alerta Madeira</Text>
               <Text style={styles.subtitle}>Proteja a sua comunidade</Text>
@@ -92,7 +92,7 @@ export default function LoginScreen() {
               ) : null}
 
               <View style={styles.inputContainer}>
-                <Mail size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="mail" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Email"
@@ -106,7 +106,7 @@ export default function LoginScreen() {
               </View>
 
               <View style={styles.inputContainer}>
-                <Lock size={20} color={Colors.textSecondary} style={styles.inputIcon} />
+                <Ionicons name="lock-closed" size={20} color={Colors.textSecondary} style={styles.inputIcon} />
                 <TextInput
                   style={styles.input}
                   placeholder="Palavra-passe"
@@ -117,9 +117,9 @@ export default function LoginScreen() {
                 />
                 <Pressable onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
                   {showPassword ? (
-                    <EyeOff size={20} color={Colors.textSecondary} />
+                    <Ionicons name="eye-off" size={20} color={Colors.textSecondary} />
                   ) : (
-                    <Eye size={20} color={Colors.textSecondary} />
+                    <Ionicons name="eye" size={20} color={Colors.textSecondary} />
                   )}
                 </Pressable>
               </View>

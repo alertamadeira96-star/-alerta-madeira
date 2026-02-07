@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
-import { X, Camera, ImageIcon, MapPin, Check, Navigation, Edit3, Video } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
 import { usePosts } from '@/contexts/PostsContext';
@@ -231,7 +231,7 @@ export default function CreatePostScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <Pressable style={styles.closeButton} onPress={() => router.back()}>
-          <X size={24} color={Colors.text} />
+          <Ionicons name="close" size={24} color={Colors.text} />
         </Pressable>
         <Text style={styles.headerTitle}>Nova Publicação</Text>
         <Pressable 
@@ -239,7 +239,7 @@ export default function CreatePostScreen() {
           onPress={handlePublish}
           disabled={createPostPending}
         >
-          <Check size={20} color={Colors.textInverse} />
+          <Ionicons name="checkmark" size={20} color={Colors.textInverse} />
           <Text style={styles.publishText}>
             {createPostPending ? 'A publicar...' : getCategoryPublishText(selectedCategory)}
           </Text>
@@ -260,21 +260,21 @@ export default function CreatePostScreen() {
             <View style={styles.imageContainer}>
               <Image source={{ uri: imageUri }} style={styles.image} contentFit="cover" />
               <Pressable style={styles.changeImageButton} onPress={() => setImageUri(null)}>
-                <X size={20} color={Colors.textInverse} />
+                <Ionicons name="close" size={20} color={Colors.textInverse} />
               </Pressable>
             </View>
           ) : (
             <View style={styles.imagePicker}>
               <Pressable style={styles.imageOption} onPress={() => pickImage(true)}>
                 <View style={styles.imageOptionIcon}>
-                  <Camera size={28} color={Colors.primary} />
+                  <Ionicons name="camera" size={28} color={Colors.primary} />
                 </View>
                 <Text style={styles.imageOptionText}>Tirar Foto</Text>
               </Pressable>
               <View style={styles.imageDivider} />
               <Pressable style={styles.imageOption} onPress={() => pickImage(false)}>
                 <View style={styles.imageOptionIcon}>
-                  <ImageIcon size={28} color={Colors.primary} />
+                  <Ionicons name="image" size={28} color={Colors.primary} />
                 </View>
                 <Text style={styles.imageOptionText}>Galeria</Text>
               </Pressable>
@@ -338,7 +338,7 @@ export default function CreatePostScreen() {
 
           <View style={styles.formSection}>
             <View style={styles.sectionLabelRow}>
-              <Video size={18} color={Colors.primary} />
+              <Ionicons name="videocam" size={18} color={Colors.primary} />
               <Text style={styles.sectionLabel}>Vídeo (opcional)</Text>
             </View>
             <TextInput
@@ -364,7 +364,7 @@ export default function CreatePostScreen() {
                 {isLoadingLocation ? (
                   <ActivityIndicator size="small" color={Colors.textInverse} />
                 ) : (
-                  <Navigation size={20} color={Colors.textInverse} />
+                  <Ionicons name="navigate" size={20} color={Colors.textInverse} />
                 )}
                 <Text style={styles.locationButtonText}>
                   {isLoadingLocation ? 'A obter...' : 'Usar GPS'}
@@ -374,13 +374,13 @@ export default function CreatePostScreen() {
                 style={[styles.locationButton, styles.manualButton]}
                 onPress={() => setShowLocationModal(true)}
               >
-                <Edit3 size={20} color={Colors.primary} />
+                <Ionicons name="create" size={20} color={Colors.primary} />
                 <Text style={styles.manualButtonText}>Manual</Text>
               </Pressable>
             </View>
             {locationData.address ? (
               <View style={styles.locationDisplay}>
-                <MapPin size={16} color={Colors.secondary} />
+                <Ionicons name="location" size={16} color={Colors.secondary} />
                 <Text style={styles.locationText} numberOfLines={2}>
                   {locationData.address}
                 </Text>
@@ -405,7 +405,7 @@ export default function CreatePostScreen() {
               <View style={styles.modalHeader}>
                 <Text style={styles.modalTitle}>Inserir Localização</Text>
                 <Pressable onPress={() => setShowLocationModal(false)}>
-                  <X size={24} color={Colors.text} />
+                  <Ionicons name="close" size={24} color={Colors.text} />
                 </Pressable>
               </View>
               <TextInput

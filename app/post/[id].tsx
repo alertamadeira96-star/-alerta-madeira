@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TextInput, Pressable, KeyboardAvoid
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
-import { ThumbsUp, Heart, AlertTriangle, MessageCircle, MapPin, Clock, Send, MoreVertical, Edit2, Trash2, Video, X } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { usePosts } from '@/contexts/PostsContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -184,7 +184,7 @@ export default function PostDetailScreen() {
           
           {post.videoUrl && (
             <Pressable style={styles.videoButton} onPress={handleVideoPress}>
-              <Video size={20} color={Colors.textInverse} />
+              <Ionicons name="videocam" size={20} color={Colors.textInverse} />
               <Text style={styles.videoButtonText}>Ver Vídeo</Text>
             </Pressable>
           )}
@@ -198,7 +198,7 @@ export default function PostDetailScreen() {
                 <View>
                   <Text style={styles.userName}>{post.userName}</Text>
                   <View style={styles.metaRow}>
-                    <Clock size={12} color={Colors.textLight} />
+                    <Ionicons name="time" size={12} color={Colors.textLight} />
                     <Text style={styles.metaText}>{formatDate(post.createdAt)}</Text>
                   </View>
                 </View>
@@ -212,7 +212,7 @@ export default function PostDetailScreen() {
             <Text style={styles.description}>{post.description}</Text>
 
             <View style={styles.locationRow}>
-              <MapPin size={16} color={Colors.textSecondary} />
+              <Ionicons name="location" size={16} color={Colors.textSecondary} />
               <Text style={styles.locationText}>{post.location}</Text>
             </View>
 
@@ -225,10 +225,10 @@ export default function PostDetailScreen() {
                 style={[styles.reactionButton, hasReactedThumbsUp && styles.reactionButtonActive]}
                 onPress={() => handleReaction('thumbsUp')}
               >
-                <ThumbsUp 
+                <Ionicons 
+                  name={hasReactedThumbsUp ? 'thumbs-up' : 'thumbs-up-outline'} 
                   size={22} 
                   color={hasReactedThumbsUp ? Colors.reactionThumbsUp : Colors.textSecondary}
-                  fill={hasReactedThumbsUp ? Colors.reactionThumbsUp : 'transparent'}
                 />
                 <Text style={[styles.reactionCount, hasReactedThumbsUp && { color: Colors.reactionThumbsUp }]}>
                   {post.reactions.thumbsUp.length}
@@ -239,10 +239,10 @@ export default function PostDetailScreen() {
                 style={[styles.reactionButton, hasReactedHeart && styles.reactionButtonActive]}
                 onPress={() => handleReaction('heart')}
               >
-                <Heart 
+                <Ionicons 
+                  name={hasReactedHeart ? 'heart' : 'heart-outline'} 
                   size={22} 
                   color={hasReactedHeart ? Colors.reactionHeart : Colors.textSecondary}
-                  fill={hasReactedHeart ? Colors.reactionHeart : 'transparent'}
                 />
                 <Text style={[styles.reactionCount, hasReactedHeart && { color: Colors.reactionHeart }]}>
                   {post.reactions.heart.length}
@@ -253,10 +253,10 @@ export default function PostDetailScreen() {
                 style={[styles.reactionButton, hasReactedAlert && styles.reactionButtonActive]}
                 onPress={() => handleReaction('alert')}
               >
-                <AlertTriangle 
+                <Ionicons 
+                  name="warning" 
                   size={22} 
                   color={hasReactedAlert ? Colors.reactionAlert : Colors.textSecondary}
-                  fill={hasReactedAlert ? Colors.reactionAlert : 'transparent'}
                 />
                 <Text style={[styles.reactionCount, hasReactedAlert && { color: Colors.reactionAlert }]}>
                   {post.reactions.alert.length}
@@ -266,7 +266,7 @@ export default function PostDetailScreen() {
 
             <View style={styles.commentsSection}>
               <View style={styles.commentsSectionHeader}>
-                <MessageCircle size={20} color={Colors.text} />
+                <Ionicons name="chatbubble" size={20} color={Colors.text} />
                 <Text style={styles.commentsSectionTitle}>
                   Comentários ({comments.length})
                 </Text>
@@ -313,7 +313,7 @@ export default function PostDetailScreen() {
             onPress={handleSendComment}
             disabled={!commentText.trim()}
           >
-            <Send size={20} color={commentText.trim() ? Colors.textInverse : Colors.textLight} />
+            <Ionicons name="send" size={20} color={commentText.trim() ? Colors.textInverse : Colors.textLight} />
           </Pressable>
         </View>
       </KeyboardAvoidingView>
@@ -327,11 +327,11 @@ export default function PostDetailScreen() {
         <Pressable style={styles.modalOverlay} onPress={() => setShowMenu(false)}>
           <View style={styles.menuContainer}>
             <Pressable style={styles.menuItem} onPress={handleEditOpen}>
-              <Edit2 size={20} color={Colors.primary} />
+              <Ionicons name="create" size={20} color={Colors.primary} />
               <Text style={styles.menuItemText}>Editar</Text>
             </Pressable>
             <Pressable style={[styles.menuItem, styles.menuItemDanger]} onPress={handleDelete}>
-              <Trash2 size={20} color={Colors.accent} />
+              <Ionicons name="trash" size={20} color={Colors.accent} />
               <Text style={[styles.menuItemText, styles.menuItemTextDanger]}>Eliminar</Text>
             </Pressable>
           </View>
@@ -352,7 +352,7 @@ export default function PostDetailScreen() {
             <View style={styles.editModalHeader}>
               <Text style={styles.editModalTitle}>Editar Publicação</Text>
               <Pressable onPress={() => setShowEditModal(false)}>
-                <X size={24} color={Colors.text} />
+                <Ionicons name="close" size={24} color={Colors.text} />
               </Pressable>
             </View>
             

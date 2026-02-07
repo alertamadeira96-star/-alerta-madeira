@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, FlatList, StyleSheet, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Plus, Search } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { usePosts } from '@/contexts/PostsContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -72,14 +72,14 @@ export default function PerdidosScreen() {
         ListHeaderComponent={posts.length > 0 ? <AdBanner variant="inline" /> : null}
         ListEmptyComponent={
           <EmptyState 
-            icon={Search}
+            iconName="search"
             title="Sem perdidos"
             description="Ainda não há itens perdidos ou encontrados. Ajude a comunidade!"
           />
         }
       />
       <Pressable style={styles.fab} onPress={handleCreatePost}>
-        <Plus size={28} color={Colors.textInverse} />
+        <Ionicons name="add" size={28} color={Colors.textInverse} />
       </Pressable>
     </View>
   );

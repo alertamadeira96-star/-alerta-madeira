@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, TextInput, Alert, FlatList, Modal, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Stack, useRouter } from 'expo-router';
-import { Users, Trash2, Bell, Image as ImageIcon, Send, X, ArrowLeft, Megaphone } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdmin } from '@/contexts/AdminContext';
@@ -156,7 +156,7 @@ export default function AdminScreen() {
           style={styles.deleteButton}
           onPress={() => handleDeleteUser(item.id, item.name)}
         >
-          <Trash2 size={18} color={Colors.accent} />
+          <Ionicons name="trash" size={18} color={Colors.accent} />
         </Pressable>
       )}
     </View>
@@ -175,7 +175,7 @@ export default function AdminScreen() {
         style={styles.deleteButton}
         onPress={() => handleDeletePost(item.id, item.title)}
       >
-        <Trash2 size={18} color={Colors.accent} />
+        <Ionicons name="trash" size={18} color={Colors.accent} />
       </Pressable>
     </View>
   );
@@ -193,7 +193,7 @@ export default function AdminScreen() {
         style={styles.deleteButton}
         onPress={() => handleDeleteAd(item.id, item.title)}
       >
-        <Trash2 size={18} color={Colors.accent} />
+        <Ionicons name="trash" size={18} color={Colors.accent} />
       </Pressable>
     </View>
   );
@@ -214,7 +214,7 @@ export default function AdminScreen() {
       
       <View style={styles.header}>
         <Pressable style={styles.headerBackButton} onPress={() => router.back()}>
-          <ArrowLeft size={24} color={Colors.textInverse} />
+          <Ionicons name="arrow-back" size={24} color={Colors.textInverse} />
         </Pressable>
         <Text style={styles.headerTitle}>Administração</Text>
         <View style={{ width: 40 }} />
@@ -225,28 +225,28 @@ export default function AdminScreen() {
           style={[styles.tab, activeTab === 'users' && styles.tabActive]}
           onPress={() => setActiveTab('users')}
         >
-          <Users size={18} color={activeTab === 'users' ? Colors.primary : Colors.textSecondary} />
+          <Ionicons name="people" size={18} color={activeTab === 'users' ? Colors.primary : Colors.textSecondary} />
           <Text style={[styles.tabText, activeTab === 'users' && styles.tabTextActive]}>Utilizadores</Text>
         </Pressable>
         <Pressable 
           style={[styles.tab, activeTab === 'posts' && styles.tabActive]}
           onPress={() => setActiveTab('posts')}
         >
-          <Megaphone size={18} color={activeTab === 'posts' ? Colors.primary : Colors.textSecondary} />
+          <Ionicons name="megaphone" size={18} color={activeTab === 'posts' ? Colors.primary : Colors.textSecondary} />
           <Text style={[styles.tabText, activeTab === 'posts' && styles.tabTextActive]}>Posts</Text>
         </Pressable>
         <Pressable 
           style={[styles.tab, activeTab === 'ads' && styles.tabActive]}
           onPress={() => setActiveTab('ads')}
         >
-          <ImageIcon size={18} color={activeTab === 'ads' ? Colors.primary : Colors.textSecondary} />
+          <Ionicons name="image" size={18} color={activeTab === 'ads' ? Colors.primary : Colors.textSecondary} />
           <Text style={[styles.tabText, activeTab === 'ads' && styles.tabTextActive]}>Anúncios</Text>
         </Pressable>
         <Pressable 
           style={[styles.tab, activeTab === 'notifications' && styles.tabActive]}
           onPress={() => setActiveTab('notifications')}
         >
-          <Bell size={18} color={activeTab === 'notifications' ? Colors.primary : Colors.textSecondary} />
+          <Ionicons name="notifications" size={18} color={activeTab === 'notifications' ? Colors.primary : Colors.textSecondary} />
           <Text style={[styles.tabText, activeTab === 'notifications' && styles.tabTextActive]}>Notif.</Text>
         </Pressable>
       </View>
@@ -287,7 +287,7 @@ export default function AdminScreen() {
             }
           />
           <Pressable style={styles.fab} onPress={() => setShowAdModal(true)}>
-            <ImageIcon size={24} color={Colors.textInverse} />
+            <Ionicons name="image" size={24} color={Colors.textInverse} />
           </Pressable>
         </>
       )}
@@ -326,7 +326,7 @@ export default function AdminScreen() {
             <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>Enviar Notificação</Text>
               <Pressable onPress={() => setShowNotificationModal(false)}>
-                <X size={24} color={Colors.text} />
+                <Ionicons name="close" size={24} color={Colors.text} />
               </Pressable>
             </View>
             
@@ -374,7 +374,7 @@ export default function AdminScreen() {
             <View style={styles.modalHeader}>
               <Text style={styles.modalTitle}>Adicionar Publicidade</Text>
               <Pressable onPress={() => setShowAdModal(false)}>
-                <X size={24} color={Colors.text} />
+                <Ionicons name="close" size={24} color={Colors.text} />
               </Pressable>
             </View>
             

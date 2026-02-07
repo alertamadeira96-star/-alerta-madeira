@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { LucideIcon } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/colors';
 
 interface EmptyStateProps {
-  icon: LucideIcon;
+  iconName: keyof typeof Ionicons.glyphMap;
   title: string;
   description: string;
 }
 
-export default function EmptyState({ icon: Icon, title, description }: EmptyStateProps) {
+export default function EmptyState({ iconName, title, description }: EmptyStateProps) {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <Icon size={48} color={Colors.textLight} strokeWidth={1.5} />
+        <Ionicons name={iconName} size={48} color={Colors.textLight} />
       </View>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
